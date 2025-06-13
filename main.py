@@ -21,3 +21,8 @@ def get_db():
 @app.get('/')
 def root():
     return 'Hi estoy probando mi api en mi pc personal'
+
+
+@app.get('/api/users', response_model=list[UserId])
+def get_users(db: Session = Depends(get_db())):
+    return crud.get_users(db=db)
